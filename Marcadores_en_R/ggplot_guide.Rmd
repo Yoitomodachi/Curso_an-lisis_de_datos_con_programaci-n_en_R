@@ -1,0 +1,38 @@
+---
+title: "ggplot_guide"
+author: "Roberto Rico Sandoval"
+date: "2024-07-25"
+output:
+  html_document: default
+---
+
+## Configuración de un entorno R, para el analisis de datos.
+NOTA: En este caso utilizaremos a la libreria de "palmerpenguins" y "tidyverse".
+
+### Instalar paquetes.
+
+install.packages("palmerpenguins")
+install.packages("tidyverse")
+
+### Cargar paquetes.
+```{r}
+library(ggplot2)
+
+library(palmerpenguins)
+```
+
+### Cargar la base de datos "Pinguinos"
+```{r}
+data(penguins)
+```
+
+### Ver el contenido de la data penguins en tabla.
+```{r}
+View(penguins)
+```
+
+### Gráfico de dispersión generado por el tamaño de las aletas y la masa corporal de las especies de pinguinos.
+```{r}
+ggplot(data = penguins) + geom_point(mapping = aes(x = flipper_length_mm, y = body_mass_g))
+```
+

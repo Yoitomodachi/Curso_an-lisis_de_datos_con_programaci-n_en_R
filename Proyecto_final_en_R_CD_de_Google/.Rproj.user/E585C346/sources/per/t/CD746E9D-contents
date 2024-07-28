@@ -1,0 +1,75 @@
+---
+title: "Proyecto_final_en_R"
+author: "Roberto Rico Sandoval"
+date: "2024-07-26"
+output: html_document: default
+
+---
+
+#### Autor: Roberto Rico Sandoval.
+#### Proyecto final en R.
+#### Date: 26/ 07/ 2024
+#### Language: R.
+
+Cargar la libreria tidyverse.
+
+```{r load tidyverse}
+library(tidyverse)
+```
+
+### Visualización de datos.
+```{r Data view}
+bars_df = read.csv("flavors_of_cacao.csv")
+glimpse(bars_df)
+head(bars_df)
+colnames(bars_df)
+```
+
+### Renombrar columnas.
+```{r Rename Columns}
+bars_df %>% 
+  rename(Brand = Company...Maker.if.known.)
+  colnames(bars_df)
+```
+
+### Generación de subconjunto de datos por función select().
+```{r Select}
+trimmed_flavors_df = bars_df %>% 
+  select(Rating, Cocoa.Percent, Company.Location,Company...Maker.if.known.)
+```
+
+### Promedio en summarize().
+```{r Average}
+trimmed_flavors_df %>% 
+  summarise(trimmed_flavors_df = sd(Rating, na.rm = TRUE))
+```
+
+### Filtrado de datos.
+```{r}
+best_trimmed_flavors_df  = trimmed_flavors_df %>% 
+  filter(Cocoa.Percent >= "80%" & Rating >= 3.75)
+```
+
+### Generar un gráfico de barras basado en Rating DF BetrFl
+```{r Grafic_Bar}
+ggplot(data = best_trimmed_flavors_df)+
+  geom_bar(mapping = aes(x = Company.Location, alpha = 0.5, fill = Rating))
+```
+
+### Separación de diagramas por columnas con face_wrap().
+```{r}
+ggplot(data = best_trimmed_flavors_df)+
+  geom_bar(mapping = aes(x = Rating))+
+  facet_wrap(~Rating)
+```
+
+## Gráfico de dispersión con título.
+### Guardar gráfico en formato jpeg.
+```{r}
+ggplot(data = trimmed_flavors_df)+
+  geom_point(mapping = aes(x = Cocoa.Percent, y = Rating))+
+  labs(title = "Best Chocolates")
+  ggsave("Chocolate.jpeg")
+```
+
+

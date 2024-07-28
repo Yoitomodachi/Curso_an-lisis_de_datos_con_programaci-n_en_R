@@ -1,0 +1,14 @@
+# Autor: Roberto Rico Sandoval.
+# Fille: Marcadores en R.
+# Date: 24/ 07/ 2024
+# Language: R.
+
+install.packages("rmarkdown")
+install.packages("vitae")
+install.packages("pdflatex")
+
+install.packages("knitr")
+library(knitr)
+install.packages("tinytex")
+tinytex::install_tinytex()
+
